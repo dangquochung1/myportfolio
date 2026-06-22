@@ -1,0 +1,16 @@
+/* Reset CSS cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  /* Bạn có thể đổi sang font bạn thích sau */
+  background-color: #fcfaf5;
+}
+
+.app-container {
+  min-height: 100vh;
+}

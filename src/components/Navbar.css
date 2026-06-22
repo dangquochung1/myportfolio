@@ -1,0 +1,113 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 24px 48px;
+  position: fixed;
+  /* Cố định menu ở trên cùng */
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fcfaf5;
+  /* Màu nền trong suốt một chút */
+  backdrop-filter: blur(10px);
+  /* Hiệu ứng kính mờ (glassmorphism) */
+  z-index: 100;
+  /* Thêm transition mượt mà để từ từ ẩn đi/hiện lại */
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+}
+
+/* Class kích hoạt khi cuộn xuống để ẩn menu */
+.navbar-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none; /* Không thể bấm khi đã ẩn */
+}
+
+.navbar-logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+.navbar-links a {
+  color: #0b0b0b;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+
+
+.navbar-avatar {
+  width: 50px;
+  /* Kích thước ô vuông */
+  height: 50px;
+  object-fit: cover;
+  /* Quan trọng: giúp ảnh chữ nhật không bị méo, tự động crop */
+  object-position: top;
+  /* Thần chú mới: Yêu cầu trình duyệt ưu tiên lấy từ trên đỉnh ảnh xuống thay vì lấy từ giữa */
+  border-radius: 8px;
+  /* Bo góc một chút cho đẹp, bạn có thể đổi thành 50% nếu muốn hình tròn */
+  display: block;
+  /* Xóa khoảng trống thừa dưới thẻ img */
+  cursor: pointer;
+  /* Hiển thị con trỏ chuột hình bàn tay khi di chuột vào */
+}
+
+.menu-item {
+  font-family: "Patrick Hand SC", cursive;
+  /* SỬA LỖI: Gọi trực tiếp tên font ở đây */
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  line-height: 140%;
+  color: #0b0b0b;
+  text-decoration: none !important;
+  /* Thêm !important để chắc chắn không bị gạch chân */
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  display: inline-block;
+  /* CẦN THIẾT: Để hiệu ứng kéo xuống (transform) hoạt động trên thẻ a */
+}
+
+/* Tạo "tia sáng" bằng CSS SVG ẩn đi */
+.menu-item::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  /* Canh vị trí tia sáng nằm trên đầu chữ */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 16px;
+  /* Vẽ 3 vạch tia sáng bằng SVG */
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='24' viewBox='0 0 40 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 20 L5 6' stroke='%23ff5900' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M20 18 L22 2' stroke='%23ff5900' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M30 20 L35 8' stroke='%23ff5900' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0;
+  /* Mặc định là tàng hình */
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+  /* Không cản trở việc click chuột */
+}
+
+.menu-item:hover,
+.menu-item:active,
+.menu-item:focus {
+  color: rgb(255, 89, 0);
+  outline: none;
+  transform: translateY(4px);
+  /* Kéo chữ xuống 1 chút (4px) */
+}
+
+/* Khi hover vào chữ thì hiện tia sáng lên */
+.menu-item:hover::before {
+  opacity: 1;
+}

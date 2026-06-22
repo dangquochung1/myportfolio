@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.skills-section {
+  padding: 100px 5%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Mảng background chấm cam do component InteractiveBackground vẽ nên nền này trong suốt */
+}
+
+.skills-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 600px;
+  /* Độ cao khung để nhét các pills */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skills-center {
+  text-align: center;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skills-image {
+  width: 220px;
+  margin-bottom: 20px;
+  animation: float-up-down 3s ease-in-out infinite;
+}
+
+@keyframes float-up-down {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.skills-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  letter-spacing: 1px;
+  margin: 0;
+  line-height: 1;
+  color: #0b0b0b;
+}
+
+.skills-subtitle {
+  font-family: "Patrick Hand SC", cursive;
+  font-size: 1.8rem;
+  color: #333;
+  line-height: 1.4;
+  margin-top: 15px;
+}
+
+.skills-subtitle .highlight-text {
+  color: #ff5900;
+  font-weight: bold;
+}
+
+/* Pills styles */
+.skill-pill {
+  position: absolute;
+  background-color: #d1dfff;
+  /* Màu xanh lơ nhạt */
+  color: #2e4384;
+  /* Màu xanh đậm */
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 5;
+  white-space: nowrap;
+}
+
+.skill-pill:hover {
+  transform: scale(1.1) rotate(0deg) !important;
+  /* Xoá góc xoay khi hover để nó thẳng lại */
+  background-color: #ff5900;
+  color: #fff;
+  box-shadow: 0 8px 15px rgba(255, 89, 0, 0.3);
+  z-index: 20;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skills-title {
+    font-size: 3rem;
+  }
+
+  .skill-pill {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .skills-image {
+    width: 150px;
+  }
+}

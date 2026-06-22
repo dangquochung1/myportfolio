@@ -1,0 +1,220 @@
+.work-section {
+  padding: 100px 5% 150px 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.work-title {
+  font-family: 'Oswald', 'Bebas Neue', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin-bottom: 60px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.work-container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  /* Space between cards before they stack */
+  position: relative;
+  /* Thêm margin-bottom để có không gian cuộn cho cái card cuối cùng dính lại */
+  margin-bottom: 100px;
+}
+
+/* CARDS STICKY MAGICAL STACKING */
+.work-card {
+  position: sticky;
+  top: 40px;
+  /* Tất cả các thẻ đều dính cố định ở cùng một vị trí này */
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 2px solid transparent;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  /* Dùng will-change để tối ưu hóa animation cuộn mượt hơn */
+  will-change: transform, opacity;
+  /* Bỏ transition: all đi để JS điều khiển mượt không bị khựng */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+  /* Kích thước min-height để thẻ trông to và đẹp */
+  min-height: 400px;
+
+  /* Cấu hình biến CSS cho JS điều khiển */
+  --card-scale: 1;
+  --card-translateY: 0px;
+  --card-opacity: 1;
+  /* Kéo thẻ lên trên (translateY âm) và thu nhỏ (scale) */
+  transform: translateY(var(--card-translateY)) scale(var(--card-scale));
+  opacity: var(--card-opacity);
+  transform-origin: top center;
+  /* Rất quan trọng: Thu nhỏ từ đỉnh xuống */
+}
+
+/* Khi hover, sáng lên và viền cam */
+.work-card:hover {
+  border-color: #ff5900;
+  box-shadow: 0 15px 40px rgba(255, 89, 0, 0.15);
+  /* Chỉ đè translateY thêm -5px so với vị trí hiện tại của biến --card-translateY */
+  transform: translateY(calc(var(--card-translateY) - 5px)) scale(var(--card-scale));
+}
+
+.work-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 40px;
+  height: 100%;
+}
+
+/* TEXT AREA */
+.work-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 45%;
+}
+
+.project-subtitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #888;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.project-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+  margin: 0 0 15px 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.project-desc {
+  font-family: 'Patrick Hand SC', cursive;
+  font-size: 1.3rem;
+  color: #444;
+  line-height: 1.4;
+  margin-bottom: 30px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.project-tag {
+  background-color: #f5f0e6;
+  color: #444;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.view-project {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: #777;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  margin-top: auto;
+  /* Push to bottom of flex if needed */
+  display: inline-block;
+}
+
+.view-project:hover {
+  color: #ff5900;
+}
+
+/* IMAGE AREA */
+.work-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f6fc;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.work-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.5s ease;
+}
+
+.work-card:hover .work-image {
+  transform: scale(1.03);
+}
+
+/* FOOTER BUTTON */
+.work-footer {
+  margin-top: 50px;
+}
+
+.checkout-btn {
+  background-color: #ffffff;
+  color: #0b0b0b;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 12px 30px;
+  border: 2px solid #0b0b0b;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0px #ff5900;
+  letter-spacing: 1px;
+}
+
+.checkout-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #ff5900;
+}
+
+.checkout-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #ff5900;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .work-card-content {
+    flex-direction: column;
+  }
+
+  .work-info {
+    max-width: 100%;
+  }
+
+  .work-image-container {
+    min-height: 250px;
+    margin-top: 20px;
+  }
+
+  .work-title {
+    font-size: 3rem;
+  }
+}

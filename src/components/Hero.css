@@ -1,0 +1,161 @@
+.hero-section {
+  padding: 150px 5% 50px 5%;
+  /* Padding trên lớn để tránh bị navbar che */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 50px;
+  position: relative;
+}
+
+/* --- PHẦN TEXT --- */
+.text-content {
+  flex: 1;
+}
+
+.greeting {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.hi-badge-container {
+  background-color: #ff5900;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+}
+
+.hi-badge-slider {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s ease-in-out;
+  height: 120px;
+}
+
+.hi-badge-slider.show-hand {
+  transform: translateY(-60px);
+}
+
+.slide-item {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 2rem;
+}
+
+.highlight-text {
+  color: #ff5900;
+  /* Màu cam giống thiết kế */
+}
+
+
+/* --- PHẦN IMAGE & LAYER --- */
+.image-content {
+  flex: 1;
+  position: relative;
+  /* QUAN TRỌNG: Thiết lập container này làm "gốc tọa độ" cho các ảnh nổi */
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-image-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  /* Layer nằm ngay trên background */
+}
+
+/* CÁCH LÀM ẢNH NỔI LÊN TRÊN (LAYER PHÍA TRÊN) */
+.floating-image {
+  position: absolute;
+  /* Tách ảnh ra khỏi luồng bố cục bình thường, nó sẽ "nổi" lên */
+  z-index: 2;
+  /* z-index lớn hơn main-image (1) nên nó sẽ nằm ĐÈ lên trên */
+  width: 120px;
+  object-fit: contain;
+}
+
+/* Đặt vị trí tự do cho từng ảnh nổi bằng top, bottom, left, right */
+.cat-top-left {
+  top: -60px;
+  left: 0;
+  transform: rotate(-15deg);
+  /* Hơi nghiêng cho tự nhiên */
+}
+
+.idea-top-right {
+  top: 20%;
+  left: 42%;
+  transform: rotate(10deg);
+}
+
+.cat-bottom {
+  bottom: 0px;
+  left: 30%;
+}
+
+/* --- ANIMATION CHO BÀN TAY --- */
+@keyframes wave-animation {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(15deg); }
+  20% { transform: rotate(-10deg); }
+  30% { transform: rotate(15deg); }
+  40% { transform: rotate(-5deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes pulse-lines {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Lắc lắc khi slider đẩy lên (hiển thị bàn tay) hoặc khi hover chuột vào */
+.hi-badge-slider.show-hand .hand-wave-group,
+.hi-badge-container:hover .hand-wave-group {
+  animation: wave-animation 1.5s ease-in-out infinite;
+  transform-origin: 18px 26px;
+}
+
+.hi-badge-slider.show-hand .motion-lines,
+.hi-badge-container:hover .motion-lines {
+  animation: pulse-lines 0.75s ease-in-out infinite;
+}
