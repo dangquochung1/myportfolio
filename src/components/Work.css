@@ -127,21 +127,63 @@
   font-weight: 600;
 }
 
-.view-project {
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 2px;
-  color: #777;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: color 0.2s;
+/* ACTION BUTTONS (demo / github / private) */
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  /* Đẩy xuống đáy thẻ cho thẳng hàng giữa các card */
   margin-top: auto;
-  /* Push to bottom of flex if needed */
-  display: inline-block;
 }
 
-.view-project:hover {
-  color: #ff5900;
+.project-link {
+  font-family: 'Oswald', 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #0b0b0b;
+  background-color: #fff;
+  padding: 10px 22px;
+  border: 2px solid #0b0b0b;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0px #ff5900;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.project-link:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #ff5900;
+}
+
+.project-link:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px #ff5900;
+}
+
+/* Nút phụ: đổ bóng đen để nhường vai chính cho nút demo */
+.project-link.is-ghost {
+  box-shadow: 3px 3px 0px #0b0b0b;
+}
+
+.project-link.is-ghost:hover {
+  box-shadow: 1px 1px 0px #0b0b0b;
+}
+
+.project-link.is-ghost:active {
+  box-shadow: 0px 0px 0px #0b0b0b;
+}
+
+/* Nhãn "private": chỉ để đọc, không bấm được và không có hiệu ứng hover */
+.project-link.is-private {
+  background-color: transparent;
+  color: #999;
+  border: 2px dashed #bbb;
+  box-shadow: none;
+  cursor: default;
+  user-select: none;
 }
 
 /* IMAGE AREA */
@@ -179,6 +221,8 @@
   font-family: 'Oswald', sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
   padding: 12px 30px;
   border: 2px solid #0b0b0b;
   border-radius: 6px;
@@ -216,5 +260,14 @@
 
   .work-title {
     font-size: 3rem;
+  }
+
+  .project-actions {
+    margin-top: 20px;
+  }
+
+  .project-link {
+    flex: 1 1 100%;
+    text-align: center;
   }
 }

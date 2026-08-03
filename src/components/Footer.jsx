@@ -3,6 +3,18 @@ import './Footer.css';
 import signatureImg from '../assets/signature.png';
 import multiImg from '../assets/multi.png';
 
+const socials = [
+  {
+    label: 'LINKEDIN',
+    // Slug có dấu tiếng Việt nên encode sẵn để mọi trình duyệt đều mở đúng
+    href: 'https://www.linkedin.com/in/h%C6%B0ng-%C4%91%E1%BA%B7ng-791251244',
+    external: true
+  },
+  // Hai tài khoản này chưa public -> dẫn sang trang "private-life" cho vui
+  { label: 'INSTAGRAM', href: '/private-life.html?from=instagram' },
+  { label: 'FACEBOOK', href: '/private-life.html?from=facebook' }
+];
+
 const Footer = () => {
   const handleHomeClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -22,27 +34,20 @@ const Footer = () => {
             </div>
             
             <div className="footer-links">
-              <a href="#" className="social-btn" onClick={(e) => e.preventDefault()}>
-                <span className="social-bg"></span>
-                <span className="social-text">
-                  <span className="text-label">LINKEDIN</span>
-                  <span className="arrow-wrapper"><span>↗</span></span>
-                </span>
-              </a>
-              <a href="#" className="social-btn" onClick={(e) => e.preventDefault()}>
-                <span className="social-bg"></span>
-                <span className="social-text">
-                  <span className="text-label">INSTAGRAM</span>
-                  <span className="arrow-wrapper"><span>↗</span></span>
-                </span>
-              </a>
-              <a href="#" className="social-btn" onClick={(e) => e.preventDefault()}>
-                <span className="social-bg"></span>
-                <span className="social-text">
-                  <span className="text-label">BEHANCE</span>
-                  <span className="arrow-wrapper"><span>↗</span></span>
-                </span>
-              </a>
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className="social-btn"
+                  {...(social.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  <span className="social-bg"></span>
+                  <span className="social-text">
+                    <span className="text-label">{social.label}</span>
+                    <span className="arrow-wrapper"><span>↗</span></span>
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
         </div>

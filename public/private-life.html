@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Nothing to see here 🔒</title>
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: #fcfaf5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      /* Lưới chấm cam mô phỏng InteractiveBackground bên trang chính */
+      background-image: radial-gradient(rgba(255, 89, 0, 0.18) 1.5px, transparent 1.5px);
+      background-size: 34px 34px;
+    }
+
+    .card {
+      background-color: #fff;
+      width: 100%;
+      max-width: 620px;
+      padding: 50px 45px 40px 45px;
+      border: 2px solid #0b0b0b;
+      border-radius: 12px;
+      box-shadow: 10px 10px 0px #ff5900;
+      text-align: center;
+    }
+
+    .lock {
+      font-size: 4rem;
+      line-height: 1;
+      display: inline-block;
+      animation: wobble 2.4s ease-in-out infinite;
+    }
+
+    @keyframes wobble {
+
+      0%,
+      100% {
+        transform: rotate(-6deg) translateY(0);
+      }
+
+      50% {
+        transform: rotate(6deg) translateY(-8px);
+      }
+    }
+
+    .stamp {
+      display: inline-block;
+      margin: 22px 0 6px 0;
+      padding: 4px 14px;
+      border: 2px dashed #bbb;
+      border-radius: 6px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      color: #999;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      line-height: 1;
+      letter-spacing: 1px;
+      color: #0b0b0b;
+      margin-bottom: 18px;
+    }
+
+    .message {
+      font-family: 'Patrick Hand SC', cursive;
+      font-size: 1.45rem;
+      line-height: 1.45;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .message b {
+      color: #ff5900;
+      font-weight: bold;
+    }
+
+    /* Thanh tiến trình xin quyền truy cập, cố tình đứng mãi ở 99% */
+    .progress-label {
+      font-family: 'Patrick Hand SC', cursive;
+      font-size: 1.05rem;
+      color: #888;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-track {
+      height: 14px;
+      border: 2px solid #0b0b0b;
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: #f5f0e6;
+      margin-bottom: 34px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background-color: #ff5900;
+      transition: width 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .back-btn {
+      display: inline-block;
+      background-color: #ff5900;
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      padding: 10px 30px;
+      border: 2px solid #0b0b0b;
+      border-radius: 6px;
+      box-shadow: 4px 4px 0px #0b0b0b;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #0b0b0b;
+    }
+
+    .back-btn:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0px 0px 0px #0b0b0b;
+    }
+
+    .footnote {
+      font-family: 'Patrick Hand SC', cursive;
+      font-size: 1rem;
+      color: #aaa;
+      margin-top: 26px;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 36px 26px 30px 26px;
+        box-shadow: 6px 6px 0px #ff5900;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .message {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <span class="lock">🔒</span>
+    <div class="stamp" id="stamp">CLASSIFIED</div>
+    <h1 id="headline">ACCESS DENIED</h1>
+    <p class="message" id="message">This account is still in private mode.</p>
+
+    <div class="progress-label">
+      <span>requesting access…</span>
+      <span id="percent">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="fill"></div>
+    </div>
+
+    <a class="back-btn" href="/#connect">← TAKE ME BACK</a>
+    <p class="footnote" id="footnote">Estimated wait time: when I finally clean up my feed.</p>
+  </main>
+
+  <script>
+    const COPY = {
+      instagram: {
+        stamp: 'INSTAGRAM',
+        headline: 'NOT PUBLIC YET',
+        message: "You've reached my Instagram. Or you would have, if it were public. It's 90% cats, 9% blurry food, and 1% <b>screenshots of bugs I fixed at 2AM</b>. Honestly, I'm protecting you.",
+        footnote: 'Estimated wait time: right after I delete the food photos.'
+      },
+      facebook: {
+        stamp: 'FACEBOOK',
+        headline: 'UNDER LOCKDOWN',
+        message: "You've reached my Facebook. It is currently sealed behind <b>maximum security</b>, mostly to protect the world from photos of me in 2016. Some things should stay in the archive.",
+        footnote: 'Estimated wait time: sometime after the heat death of the universe.'
+      },
+      default: {
+        stamp: 'CLASSIFIED',
+        headline: 'ACCESS DENIED',
+        message: "This account isn't public yet. But hey — my <b>code</b> is very public, and it's a lot more interesting than my selfies.",
+        footnote: "Meanwhile, the GitHub link on the way out is fully unlocked."
+      }
+    };
+
+    const from = new URLSearchParams(window.location.search).get('from');
+    const copy = COPY[from] || COPY.default;
+
+    document.getElementById('stamp').textContent = copy.stamp;
+    document.getElementById('headline').textContent = copy.headline;
+    document.getElementById('message').innerHTML = copy.message;
+    document.getElementById('footnote').textContent = copy.footnote;
+
+    // Chạy tới 99% rồi đứng im mãi mãi — đó chính là trò đùa
+    requestAnimationFrame(() => {
+      document.getElementById('fill').style.width = '99%';
+    });
+
+    let shown = 0;
+    const tick = setInterval(() => {
+      shown = Math.min(99, shown + 3);
+      document.getElementById('percent').textContent = shown + '%';
+      if (shown === 99) clearInterval(tick);
+    }, 50);
+  </script>
+</body>
+
+</html>

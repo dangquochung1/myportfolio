@@ -16,10 +16,10 @@ const About = () => {
           <h2 className="about-title">SOMETHING ABOUT ME</h2>
           <div className="about-desc">
             <p>
-              I'm a Software Engineer who loves to learn about Java and sometimes bring ideas to life through coding. Practice both Springboot and ReactJS is the way I make my dream come true.
+              I'm a final-year Software Engineering student at FPT University, headed for a fresher Java backend role. The part I enjoy most is the translating: taking a messy real-world rule and turning it into something a machine gets right every single time.
             </p>
             <p>
-              1+ years work experience across outsource companies. Coding, debugging, testing, and deploying software applications.
+              Most of what I know came from building, not reading. Three months on an HRM capstone — where I owned the payroll and contract modules — taught me more about Spring Boot, PostgreSQL and Docker than any tutorial ever did. IELTS 6.5, so English standups don't scare me.
             </p>
           </div>
 

@@ -1,42 +1,41 @@
 import React, { useEffect } from 'react';
 import './Work.css';
-import img1 from '../assets/work.png';
-import img2 from '../assets/cat1.avif';
-import img3 from '../assets/cat2.avif';
-import img4 from '../assets/cat3.avif';
+import thtImg from '../assets/tht.png';
+import productPreviewImg from '../assets/product-preview-card.jpg';
+import resultsSummaryImg from '../assets/results-summary.jpg';
+
+const OTHER_WORKS_URL = "https://github.com/dangquochung1?tab=repositories";
 
 const projects = [
   {
     id: 1,
-    title: "JUSPAY GENIUS",
-    subtitle: "PROJECT 1",
-    desc: "AI assistant that transforms payment and business data into actionable insights through conversational analytics.",
-    tags: ["Logo Design", "Branding"],
-    image: img1
+    title: "HRM SYSTEM — THT SOLUTION",
+    subtitle: "CAPSTONE PROJECT · BACKEND",
+    desc: "Backend for an HR platform covering employee records, contracts, attendance and payroll. I owned the Payroll module end to end — Vietnamese statutory insurance, progressive income tax, monthly runs with preview / approve / lock, and Excel payslips.",
+    tags: ["Java 17", "Spring Boot 3", "PostgreSQL", "Apache POI"],
+    image: thtImg,
+    // Repo của khách hàng nên không public được -> chỉ hiện nhãn, không bấm được
+    isPrivate: true
   },
   {
     id: 2,
-    title: "BREEZE BUDDY",
-    subtitle: "PROJECT 2",
-    desc: "AI voice agent that automates customer communication, helping merchants save time and reduce returns.",
-    tags: ["Web Design", "SAAS"],
-    image: img2
+    title: "PRODUCT PREVIEW CARD",
+    subtitle: "FRONTEND MENTOR CHALLENGE",
+    desc: "A product card built with hand-written HTML and CSS that swaps its artwork and layout between mobile and desktop — no framework, no build step.",
+    tags: ["HTML", "CSS", "Responsive"],
+    image: productPreviewImg,
+    live: "https://dangquochung1.github.io/product-preview-card-component/",
+    repo: "https://github.com/dangquochung1/product-preview-card-component"
   },
   {
     id: 3,
-    title: "HACKTOBER FEST",
-    subtitle: "PROJECT 3",
-    desc: "Designed a retro-tech inspired merch collection that brings developer culture and open-source spirit to life.",
-    tags: ["Merch Design", "Performance AD"],
-    image: img3
-  },
-  {
-    id: 4,
-    title: "NORD VPN",
-    subtitle: "PROJECT 4",
-    desc: "A college graduation project featuring a brand refresh and advertising campaign focused on digital privacy and security.",
-    tags: ["Ad Campaign", "Rebranding"],
-    image: img4
+    title: "RESULTS SUMMARY",
+    subtitle: "FRONTEND MENTOR CHALLENGE",
+    desc: "A results summary card with a gradient score panel and colour-coded category rows, put together with Flexbox and CSS custom properties.",
+    tags: ["HTML", "CSS", "Flexbox"],
+    image: resultsSummaryImg,
+    live: "https://dangquochung1.github.io/results-summary-component/",
+    repo: "https://github.com/dangquochung1/results-summary-component"
   }
 ];
 
@@ -98,7 +97,7 @@ const Work = () => {
 
   return (
     <section className="work-section" id="work">
-      <h2 className="work-title">DESIGN IN ACTION</h2>
+      <h2 className="work-title">THINGS I'VE BUILT</h2>
 
       <div className="work-container">
         {projects.map((project) => (
@@ -116,7 +115,16 @@ const Work = () => {
                     <span key={i} className="project-tag">{tag}</span>
                   ))}
                 </div>
-                <a href="#work" className="view-project">VIEW PROJECT</a>
+                <div className="project-actions">
+                  {project.isPrivate ? (
+                    <span className="project-link is-private">PRIVATE REPO</span>
+                  ) : (
+                    <>
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-link">VIEW PROJECT ↗</a>
+                      <a href={project.repo} target="_blank" rel="noopener noreferrer" className="project-link is-ghost">GITHUB ↗</a>
+                    </>
+                  )}
+                </div>
               </div>
               <div className="work-image-container">
                 <img src={project.image} alt={project.title} className="work-image" />
@@ -127,7 +135,9 @@ const Work = () => {
       </div>
 
       <div className="work-footer">
-        <button className="checkout-btn">CHECK OUT MY OTHER WORKS ↗</button>
+        <a href={OTHER_WORKS_URL} target="_blank" rel="noopener noreferrer" className="checkout-btn">
+          CHECK OUT MY OTHER WORKS ↗
+        </a>
       </div>
     </section>
   );
