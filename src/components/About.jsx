@@ -11,7 +11,8 @@ const About = () => {
       <section className="about-section" id="about">
         {/* 3D Grid background */}
         <div className="about-grid-bg"></div>
-
+          <div className="about-content">
+          <h2 className="about-title">SOMETHING ABOUT ME</h2>
         <div className="about-desc">
   <p>
     I'm a Software Engineering graduate from FPT University, looking for a fresher Java backend role. The part I enjoy most is the translating: taking a messy real-world rule and turning it into something a machine gets right every single time.
