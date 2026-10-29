@@ -12,16 +12,14 @@ const About = () => {
         {/* 3D Grid background */}
         <div className="about-grid-bg"></div>
 
-        <div className="about-content">
-          <h2 className="about-title">SOMETHING ABOUT ME</h2>
-          <div className="about-desc">
-            <p>
-              I'm a final-year Software Engineering student at FPT University, headed for a fresher Java backend role. The part I enjoy most is the translating: taking a messy real-world rule and turning it into something a machine gets right every single time.
-            </p>
-            <p>
-              Most of what I know came from building, not reading. Three months on an HRM capstone — where I owned the payroll and contract modules — taught me more about Spring Boot, PostgreSQL and Docker than any tutorial ever did. IELTS 6.5, so English standups don't scare me.
-            </p>
-          </div>
+        <div className="about-desc">
+  <p>
+    I'm a Software Engineering graduate from FPT University, looking for a fresher Java backend role. The part I enjoy most is the translating: taking a messy real-world rule and turning it into something a machine gets right every single time.
+  </p>
+  <p>
+    Most of what I know came from building, not reading. On my HRM capstone I owned the payroll and contract modules, and tested them too, which taught me more about Spring Boot, PostgreSQL and Docker than any tutorial ever did. Alongside that, I've completed 8+ months of Java Web training at FPT Software Academy. IELTS 6.5, so English standups don't scare me.
+  </p>
+</div>
 
           <a href={resumePdf} target="_blank" rel="noopener noreferrer" className="resume-btn">
             <svg className="download-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
