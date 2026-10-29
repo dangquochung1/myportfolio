@@ -3,6 +3,7 @@ import './Work.css';
 import thtImg from '../assets/tht.png';
 import productPreviewImg from '../assets/product-preview-card.jpg';
 import resultsSummaryImg from '../assets/results-summary.jpg';
+import duyenImg from '../assets/duyen.png';
 
 const OTHER_WORKS_URL = "https://github.com/dangquochung1?tab=repositories";
 
@@ -19,6 +20,15 @@ const projects = [
   },
   {
     id: 2,
+    title: "DUYEN",
+    subtitle: "PERSONAL PROJECT",
+    desc: "A beautiful Vietnamese wedding invitation web app — featuring an animated landing page, event details, RSVP form, and a photo gallery, all wrapped in an elegant traditional design.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    image: duyenImg,
+    repo: "https://github.com/dangquochung1/Duyen"
+  },
+  {
+    id: 3,
     title: "PRODUCT PREVIEW CARD",
     subtitle: "FRONTEND MENTOR CHALLENGE",
     desc: "A product card built with hand-written HTML and CSS that swaps its artwork and layout between mobile and desktop — no framework, no build step.",
@@ -28,7 +38,7 @@ const projects = [
     repo: "https://github.com/dangquochung1/product-preview-card-component"
   },
   {
-    id: 3,
+    id: 4,
     title: "RESULTS SUMMARY",
     subtitle: "FRONTEND MENTOR CHALLENGE",
     desc: "A results summary card with a gradient score panel and colour-coded category rows, put together with Flexbox and CSS custom properties.",
@@ -120,7 +130,7 @@ const Work = () => {
                     <span className="project-link is-private">PRIVATE REPO</span>
                   ) : (
                     <>
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-link">VIEW PROJECT ↗</a>
+                      {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-link">VIEW PROJECT ↗</a>}
                       <a href={project.repo} target="_blank" rel="noopener noreferrer" className="project-link is-ghost">GITHUB ↗</a>
                     </>
                   )}
