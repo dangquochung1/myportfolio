@@ -4,6 +4,7 @@ import thtImg from '../assets/tht.png';
 import productPreviewImg from '../assets/product-preview-card.jpg';
 import resultsSummaryImg from '../assets/results-summary.jpg';
 import duyenImg from '../assets/duyen.png';
+import duyenCert from '../assets/Certificate-hungdq1412@gmail.com.pdf';
 
 const OTHER_WORKS_URL = "https://github.com/dangquochung1?tab=repositories";
 
@@ -22,10 +23,11 @@ const projects = [
     id: 2,
     title: "DUYEN",
     subtitle: "PERSONAL PROJECT",
-    desc: "A beautiful Vietnamese wedding invitation web app — featuring an animated landing page, event details, RSVP form, and a photo gallery, all wrapped in an elegant traditional design.",
+    desc: "A beautiful Vietnamese wedding invitation web app — featuring an animated landing page, event details, RSVP form, and a photo gallery, all wrapped in an elegant traditional design. Achieved Top 50 in its competition.",
     tags: ["HTML", "CSS", "JavaScript"],
     image: duyenImg,
-    repo: "https://github.com/dangquochung1/Duyen"
+    repo: "https://github.com/dangquochung1/Duyen",
+    cert: duyenCert
   },
   {
     id: 3,
@@ -132,6 +134,7 @@ const Work = () => {
                     <>
                       {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-link">VIEW PROJECT ↗</a>}
                       <a href={project.repo} target="_blank" rel="noopener noreferrer" className="project-link is-ghost">GITHUB ↗</a>
+                      {project.cert && <a href={project.cert} target="_blank" rel="noopener noreferrer" className="project-link is-ghost">CERT ↗</a>}
                     </>
                   )}
                 </div>
