@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+.roles-section {
+  padding: 80px 5% 120px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.roles-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.roles-title {
+  font-family: 'Oswald', 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.roles-subtitle {
+  font-family: "Patrick Hand SC", cursive;
+  font-size: 1.6rem;
+  color: #333;
+  line-height: 1.4;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.roles-subtitle .highlight-text {
+  color: #ff5900;
+  font-weight: bold;
+}
+
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.role-card {
+  background: #ffffff;
+  border: 2px solid #0b0b0b;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 4px 4px 0px #0b0b0b;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.role-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 0px #ff5900;
+  border-color: #ff5900;
+}
+
+.role-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.role-icon {
+  font-size: 2.2rem;
+  display: inline-block;
+}
+
+.role-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  background: #f3f4f6;
+  color: #4b5563;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+}
+
+.role-card:hover .role-badge {
+  background: rgba(255, 89, 0, 0.1);
+  color: #ff5900;
+  border-color: rgba(255, 89, 0, 0.3);
+}
+
+.role-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin: 0 0 12px 0;
+  color: #111;
+}
+
+.role-card-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.role-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.role-skill-pill {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background-color: #f5f0e6;
+  color: #444;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .roles-title {
+    font-size: 2.8rem;
+  }
+  .roles-subtitle {
+    font-size: 1.3rem;
+  }
+  .roles-grid {
+    grid-template-columns: 1fr;
+  }
+}

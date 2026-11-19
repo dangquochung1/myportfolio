@@ -1,20 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
 
 .skills-section {
-  padding: 100px 5%;
-  min-height: 80vh;
+  padding: 80px 4% 100px 4%;
+  min-height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Mảng background chấm cam do component InteractiveBackground vẽ nên nền này trong suốt */
+  position: relative;
+  z-index: 1;
 }
 
+.skills-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Category Filter Tabs */
+.skills-filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  z-index: 25;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  transition: all 0.25s ease;
+}
+
+.filter-btn:hover {
+  color: #ff5900;
+  background: rgba(255, 89, 0, 0.08);
+}
+
+.filter-btn.active {
+  background: #ff5900;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 89, 0, 0.3);
+}
+
+/* Container for Floating Pills */
 .skills-container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
-  height: 600px;
-  /* Độ cao khung để nhét các pills */
+  max-width: 1300px;
+  height: 660px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,26 +76,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  pointer-events: none;
 }
 
 .skills-image {
   width: 220px;
   margin-bottom: 20px;
   animation: float-up-down 3s ease-in-out infinite;
+  pointer-events: auto;
 }
 
 @keyframes float-up-down {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 .skills-title {
@@ -74,42 +118,154 @@
 .skill-pill {
   position: absolute;
   background-color: #d1dfff;
-  /* Màu xanh lơ nhạt */
   color: #2e4384;
-  /* Màu xanh đậm */
   font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  padding: 10px 24px;
+  padding: 8px 18px;
   border-radius: 50px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 5;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(46, 67, 132, 0.12);
 }
 
+.skill-tag-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.5px;
+}
+
+/* Subtle category accents */
+.skill-pill.cat-ai {
+  background-color: #ede9fe;
+  color: #5b21b6;
+  border-color: rgba(91, 33, 182, 0.15);
+}
+.skill-pill.cat-ai .skill-tag-badge {
+  background: rgba(91, 33, 182, 0.12);
+  color: #5b21b6;
+}
+
+.skill-pill.cat-frontend {
+  background-color: #ccfbf1;
+  color: #0f766e;
+  border-color: rgba(15, 118, 110, 0.15);
+}
+.skill-pill.cat-frontend .skill-tag-badge {
+  background: rgba(15, 118, 110, 0.12);
+  color: #0f766e;
+}
+
+.skill-pill.cat-qa {
+  background-color: #fef3c7;
+  color: #b45309;
+  border-color: rgba(180, 83, 9, 0.15);
+}
+.skill-pill.cat-qa .skill-tag-badge {
+  background: rgba(180, 83, 9, 0.12);
+  color: #b45309;
+}
+
+.skill-pill.cat-languages {
+  background-color: #ffe4e6;
+  color: #be123c;
+  border-color: rgba(190, 18, 60, 0.15);
+}
+.skill-pill.cat-languages .skill-tag-badge {
+  background: rgba(190, 18, 60, 0.12);
+  color: #be123c;
+}
+
+/* Interaction States */
 .skill-pill:hover {
-  transform: scale(1.1) rotate(0deg) !important;
-  /* Xoá góc xoay khi hover để nó thẳng lại */
-  background-color: #ff5900;
+  transform: scale(1.12) rotate(0deg) !important;
+  background-color: #ff5900 !important;
+  color: #fff !important;
+  border-color: #ff5900 !important;
+  box-shadow: 0 10px 20px rgba(255, 89, 0, 0.35);
+  z-index: 30;
+}
+.skill-pill:hover .skill-tag-badge {
+  background: rgba(255, 255, 255, 0.25);
   color: #fff;
-  box-shadow: 0 8px 15px rgba(255, 89, 0, 0.3);
-  z-index: 20;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+.skill-pill.pill-dimmed {
+  opacity: 0.22;
+  transform: scale(0.92) !important;
+  filter: grayscale(80%);
+}
+
+.skill-pill.pill-active {
+  opacity: 1;
+}
+
+/* Responsive Layout */
+@media (max-width: 1024px) {
+  .skills-container {
+    height: auto;
+    min-height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 20px;
+    position: static;
+  }
+
+  .skills-center {
+    order: -1;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
   .skills-title {
-    font-size: 3rem;
+    font-size: 3.8rem;
+  }
+
+  .skills-subtitle {
+    font-size: 1.5rem;
   }
 
   .skill-pill {
-    font-size: 0.9rem;
-    padding: 8px 16px;
+    position: static !important;
+    transform: none !important;
+    font-size: 0.95rem;
+  }
+
+  .skill-pill:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-title {
+    font-size: 2.8rem;
+  }
+
+  .skills-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .skills-filter-container {
+    border-radius: 20px;
+  }
+
+  .filter-btn {
+    font-size: 0.82rem;
+    padding: 6px 12px;
   }
 
   .skills-image {
-    width: 150px;
+    width: 160px;
   }
 }

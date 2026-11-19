@@ -1,4 +1,3 @@
-import React from 'react';
 import './About.css';
 import natureImg from '../assets/natureAbout.avif';
 import humanImg from '../assets/humanAbout.png';
@@ -15,10 +14,13 @@ const About = () => {
           <h2 className="about-title">SOMETHING ABOUT ME</h2>
         <div className="about-desc">
   <p>
-    I'm a Software Engineering graduate from FPT University, looking for a fresher Java backend role. The part I enjoy most is the translating: taking a messy real-world rule and turning it into something a machine gets right every single time.
+    I'm a Software Engineering graduate from FPT University. The part I enjoy most is the translating: taking a messy real-world rule — payroll tax brackets, insurance caps, contract versioning — and turning it into something a machine gets right every single time.
   </p>
   <p>
-    Most of what I know came from building, not reading. On my HRM capstone I owned the payroll and contract modules, and tested them too, which taught me more about Spring Boot, PostgreSQL and Docker than any tutorial ever did. Alongside that, I've completed 8+ months of Java Web training at FPT Software Academy. IELTS 6.5, so English standups don't scare me.
+    Most of what I know came from building, not reading. On my HRM capstone I owned the payroll and contract modules (79-table schema, ~110 endpoints, ~440 tests), built two Python AI microservices (face check-in at ~0.3 s, contract OCR cut from 83 s to 28 s), and set up the Docker stack for the team. For AI Riser Vietnam 2026 I built Duyên solo — a TypeScript + Gemini app that deduplicates event data and schedules 288 conflict-free meetings in 63 ms. I use AI coding agents (Claude Code, Google Antigravity) daily and always check their work with tests and review.
+  </p>
+  <p>
+    Outside of code, I played traditional Vietnamese instruments in FTIC (the university's folk music club) and performed at campus shows. I'm a cat person who loves nature, speak English comfortably (IELTS 6.5), and I'm learning Korean (TOPIK II Level 3). I'm open to backend, full-stack, AI integration, QA or any role where I can build things that actually work.
   </p>
 </div>
 

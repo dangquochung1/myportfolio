@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Hero.css';
 import workImg from '../assets/work.png';
 import cat1 from '../assets/cat1.avif';
@@ -51,7 +51,13 @@ const Hero = () => {
             there, I am <span className="highlight-text">Dang Quoc Hung</span>
           </p>
           <h1 className="title">SOFTWARE ENGINEER</h1>
-          <p className="subtitle">who can <span className="highlight-text">build websites !</span></p>
+          <p className="subtitle">
+            who turns complex real-world logic into <span className="highlight-text">dependable software & AI !</span>
+          </p>
+          <div className="hero-status-pill">
+            <span className="status-indicator"></span>
+            <span>Open to opportunities: Backend • Full-stack • AI Integration • QA</span>
+          </div>
         </div>
 
         {/* Phần ảnh bên phải */}

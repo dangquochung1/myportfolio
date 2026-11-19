@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import './Work.css';
 import thtImg from '../assets/tht.png';
-import productPreviewImg from '../assets/product-preview-card.jpg';
 import resultsSummaryImg from '../assets/results-summary.jpg';
 import duyenImg from '../assets/duyen.png';
 import duyenCert from '../assets/Certificate-hungdq1412@gmail.com.pdf';
@@ -12,42 +11,44 @@ const projects = [
   {
     id: 1,
     title: "HRM SYSTEM — THT SOLUTION",
-    subtitle: "CAPSTONE PROJECT · BACKEND",
-    desc: "Backend for an HR platform covering employee records, contracts, attendance and payroll. I owned the Payroll module end to end — Vietnamese statutory insurance, progressive income tax, monthly runs with preview / approve / lock, and Excel payslips.",
-    tags: ["Java 17", "Spring Boot 3", "PostgreSQL", "Apache POI"],
+    subtitle: "CAPSTONE PROJECT · FULL-STACK, ENTERPRISE & AI",
+    desc: "Enterprise HR & Payroll platform backed by a 79-table PostgreSQL schema. I owned the Payroll, Contract and Organization modules end-to-end (~110 REST endpoints, ~440 unit tests), solved complex statutory insurance & progressive tax calculations, and built two Python FastAPI microservices (InsightFace biometric verification at ~0.3s on CPU and parallel PaddleOCR/VietOCR cutting contract processing from 82.8s to 28.4s). Created the Docker Compose stack and reproducible seed data for the 5-person team.",
+    highlights: ["79-Table Schema", "~110 REST Endpoints", "~440 Tests", "InsightFace ~0.3s CPU"],
+    tags: ["Java 17", "Spring Boot 3", "PostgreSQL", "Python FastAPI (AI)", "InsightFace ONNX", "PaddleOCR & VietOCR", "React & Expo", "JUnit 5 (~440 tests)", "Docker Compose"],
     image: thtImg,
-    // Repo của khách hàng nên không public được -> chỉ hiện nhãn, không bấm được
-    isPrivate: true
+    repo: "https://github.com/quannaoto17/HRM-for-THT-Solution"
   },
   {
     id: 2,
-    title: "DUYEN",
-    subtitle: "PERSONAL PROJECT",
-    desc: "A beautiful Vietnamese wedding invitation web app — featuring an animated landing page, event details, RSVP form, and a photo gallery, all wrapped in an elegant traditional design. Achieved Top 50 in its competition.",
-    tags: ["HTML", "CSS", "JavaScript"],
+    title: "DUYÊN — EVENT INTELLIGENCE",
+    subtitle: "TOP 50 AI RISER VIETNAM 2026 · SOLO DEVELOPER",
+    desc: "An intelligent event intelligence platform that turns messy event spreadsheets into deduplicated attendee profiles and generates conflict-free 1:1 meeting schedules. Powered by Gemini API for column mapping and gray-zone fuzzy matching (18/18 duplicate attendees merged with 0 false merges), backed by a deterministic constraint solver scheduling 288 meetings in 63ms with 0 conflicts (0 violations across 200 stress tests).",
+    highlights: ["Top 50 AI Riser 2026", "288 Meetings in 63ms", "0 Conflicts", "0 False Merges"],
+    tags: ["TypeScript", "Gemini API", "Google AI Studio", "Constraint Solver", "Top 50 AI Riser"],
     image: duyenImg,
     repo: "https://github.com/dangquochung1/Duyen",
     cert: duyenCert
   },
   {
     id: 3,
-    title: "PRODUCT PREVIEW CARD",
-    subtitle: "FRONTEND MENTOR CHALLENGE",
-    desc: "A product card built with hand-written HTML and CSS that swaps its artwork and layout between mobile and desktop — no framework, no build step.",
-    tags: ["HTML", "CSS", "Responsive"],
-    image: productPreviewImg,
-    live: "https://dangquochung1.github.io/product-preview-card-component/",
-    repo: "https://github.com/dangquochung1/product-preview-card-component"
-  },
-  {
-    id: 4,
-    title: "RESULTS SUMMARY",
-    subtitle: "FRONTEND MENTOR CHALLENGE",
-    desc: "A results summary card with a gradient score panel and colour-coded category rows, put together with Flexbox and CSS custom properties.",
-    tags: ["HTML", "CSS", "Flexbox"],
+    title: "FRONTEND & UI LAB",
+    subtitle: "RESPONSIVE DESIGN & INTERACTIVE LAB",
+    desc: "Curated collection of responsive, pixel-perfect web interfaces and interactive components built to master CSS architecture, modern layout mechanics (Flexbox/Grid), and semantic accessibility without framework dependencies.",
+    highlights: ["Mobile & Desktop Adaptive", "Pure CSS Architecture", "Custom Properties & Flexbox"],
+    tags: ["HTML5 / Semantic", "CSS3 / Custom Props", "Flexbox & Grid", "Responsive Design"],
     image: resultsSummaryImg,
-    live: "https://dangquochung1.github.io/results-summary-component/",
-    repo: "https://github.com/dangquochung1/results-summary-component"
+    subProjects: [
+      {
+        name: "Product Preview Card",
+        live: "https://dangquochung1.github.io/product-preview-card-component/",
+        repo: "https://github.com/dangquochung1/product-preview-card-component"
+      },
+      {
+        name: "Results Summary Component",
+        live: "https://dangquochung1.github.io/results-summary-component/",
+        repo: "https://github.com/dangquochung1/results-summary-component"
+      }
+    ]
   }
 ];
 
@@ -61,35 +62,24 @@ const Work = () => {
           const cards = Array.from(document.querySelectorAll('.work-card'));
           const stickyTop = 40; // Khoảng cách trần
 
-          // 1. Giai đoạn ĐỌC (Read): Lấy tất cả thông số trước để tránh layout thrashing
+          // 1. Giai đoạn ĐỌC (Read)
           const cardData = cards.map((card, i) => {
             const nextCard = cards[i + 1];
-
-            // Thẻ cuối cùng không có thẻ nào đè lên
             if (!nextCard) return { card, overlap: 0 };
 
-            // Khoảng cách ban đầu giữa 2 thẻ (khi chưa cuộn)
             const initialDistance = nextCard.offsetTop - card.offsetTop;
-
-            // Khoảng cách hiện tại của thẻ tiếp theo so với "trần" (stickyTop)
             const nextDist = nextCard.getBoundingClientRect().top - stickyTop;
-
-            // Chỉ bắt đầu tính overlap khi thẻ hiện tại ĐÃ CHẠM TRẦN
-            // Tức là khi nextDist < initialDistance
             let overlap = (initialDistance - Math.max(0, nextDist)) / initialDistance;
-
-            // Giới hạn overlap từ 0 (chưa đè) đến 1 (đè hoàn toàn)
             overlap = Math.max(0, Math.min(1, overlap));
 
             return { card, overlap };
           });
 
-          // 2. Giai đoạn GHI (Write): Áp dụng CSS
+          // 2. Giai đoạn GHI (Write)
           cardData.forEach(({ card, overlap }) => {
-            // Thẻ đứng im ở tường, thu nhỏ rõ hơn một chút và mờ dần
-            const scale = 1 - overlap * 0.1; // Thu nhỏ 10% (để thấy rõ hiệu ứng nhỏ dần)
-            const translateY = 0; // KHÔNG dịch chuyển lên trên nữa
-            const opacity = 1 - overlap; // Mờ từ từ (khi overlap = 1 thì mới mờ hẳn)
+            const scale = 1 - overlap * 0.1;
+            const translateY = 0;
+            const opacity = 1 - overlap;
 
             card.style.setProperty('--card-scale', scale);
             card.style.setProperty('--card-translateY', `${translateY}px`);
@@ -121,20 +111,41 @@ const Work = () => {
               <div className="work-info">
                 <span className="project-subtitle">{project.subtitle}</span>
                 <h3 className="project-title">{project.title}</h3>
+                
+                {project.highlights && (
+                  <div className="project-highlights">
+                    {project.highlights.map((h, i) => (
+                      <span key={i} className="highlight-pill">✓ {h}</span>
+                    ))}
+                  </div>
+                )}
+
                 <p className="project-desc">{project.desc}</p>
+                
                 <div className="project-tags">
                   {project.tags.map((tag, i) => (
                     <span key={i} className="project-tag">{tag}</span>
                   ))}
                 </div>
+
                 <div className="project-actions">
-                  {project.isPrivate ? (
-                    <span className="project-link is-private">PRIVATE REPO</span>
+                  {project.subProjects ? (
+                    <div className="sub-projects-wrapper">
+                      {project.subProjects.map((sub, idx) => (
+                        <div key={idx} className="sub-project-item">
+                          <span className="sub-project-title">{sub.name}</span>
+                          <div className="sub-project-buttons">
+                            <a href={sub.live} target="_blank" rel="noopener noreferrer" className="project-link is-mini">DEMO ↗</a>
+                            <a href={sub.repo} target="_blank" rel="noopener noreferrer" className="project-link is-ghost is-mini">GITHUB ↗</a>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   ) : (
                     <>
                       {project.live && <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-link">VIEW PROJECT ↗</a>}
-                      <a href={project.repo} target="_blank" rel="noopener noreferrer" className="project-link is-ghost">GITHUB ↗</a>
-                      {project.cert && <a href={project.cert} target="_blank" rel="noopener noreferrer" className="project-link is-ghost">CERT ↗</a>}
+                      {project.repo && <a href={project.repo} target="_blank" rel="noopener noreferrer" className="project-link is-ghost">GITHUB ↗</a>}
+                      {project.cert && <a href={project.cert} target="_blank" rel="noopener noreferrer" className="project-link is-cert">CERTIFICATE ↗</a>}
                     </>
                   )}
                 </div>

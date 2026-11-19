@@ -97,10 +97,30 @@
   font-family: 'Oswald', sans-serif;
   font-size: 3rem;
   font-weight: 500;
-  margin: 0 0 15px 0;
+  margin: 0 0 10px 0;
   line-height: 1.1;
   text-transform: uppercase;
   color: #111;
+}
+
+.project-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.highlight-pill {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background-color: #f0fdf4;
+  color: #166534;
+  border: 1px solid rgba(22, 101, 52, 0.2);
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .project-desc {
@@ -108,7 +128,7 @@
   font-size: 1.3rem;
   color: #444;
   line-height: 1.4;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .project-tags {
@@ -174,6 +194,57 @@
 
 .project-link.is-ghost:active {
   box-shadow: 0px 0px 0px #0b0b0b;
+}
+
+/* Certificate button */
+.project-link.is-cert {
+  box-shadow: 3px 3px 0px #10b981;
+}
+
+.project-link.is-cert:hover {
+  box-shadow: 1px 1px 0px #10b981;
+}
+
+/* Sub-projects list inside the UI Lab card */
+.sub-projects-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.sub-project-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 8px 14px;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.sub-project-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.sub-project-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.project-link.is-mini {
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  box-shadow: 2px 2px 0px #ff5900;
+}
+
+.project-link.is-mini.is-ghost {
+  box-shadow: 2px 2px 0px #0b0b0b;
 }
 
 /* Nhãn "private": chỉ để đọc, không bấm được và không có hiệu ứng hover */

@@ -1,4 +1,3 @@
-import React from 'react';
 import './Footer.css';
 import signatureImg from '../assets/signature.png';
 import multiImg from '../assets/multi.png';

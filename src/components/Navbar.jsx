@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import logoImg from '../assets/logo.png';
 import './Navbar.css';
 
@@ -27,7 +27,9 @@ function Navbar() {
         <img src={logoImg} alt="hungface" className="navbar-avatar" />
       </div>
       <ul className="navbar-links">
+        <li><a href="#skills" className="menu-item">skills</a></li>
         <li><a href="#work" className="menu-item">work</a></li>
+        <li><a href="#roles" className="menu-item">roles</a></li>
         <li><a href="#about" className="menu-item">about</a></li>
         <li><a href="#connect" className="menu-item">connect</a></li>
       </ul>
