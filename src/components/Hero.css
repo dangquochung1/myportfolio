@@ -1,180 +1,189 @@
-.hero-section {
-  padding: 150px 5% 50px 5%;
-  /* Padding trên lớn để tránh bị navbar che */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
+.hero {
+  position: relative;
+  padding: 104px 0 clamp(64px, 9vw, 112px);
+  overflow-x: clip;
 }
 
-.hero-content {
+/* --- DẢI META TRÊN CÙNG --- */
+.hero__meta {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 100%;
-  max-width: 1200px;
-  gap: 50px;
-  position: relative;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: clamp(36px, 6vw, 72px);
+}
+
+/* --- LƯỚI 2 CỘT: chữ | poster --- */
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
 }
 
 /* --- PHẦN TEXT --- */
-.text-content {
-  flex: 1;
-}
-
 .greeting {
-  font-size: 2rem;
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 10px;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.3vw, 1.9rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 .hi-badge-container {
-  background-color: #ff5900;
-  color: white;
+  flex-shrink: 0;
+  background-color: var(--red);
+  color: var(--paper);
   border-radius: 50%;
-  font-weight: bold;
+  font-family: var(--font-display);
+  font-weight: 800;
   display: inline-flex;
   align-items: flex-start;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   overflow: hidden;
   position: relative;
-  vertical-align: middle;
 }
 
 .hi-badge-slider {
   display: flex;
   flex-direction: column;
   transition: transform 0.5s ease-in-out;
-  height: 120px;
+  height: 112px;
 }
 
 .hi-badge-slider.show-hand {
-  transform: translateY(-60px);
+  transform: translateY(-56px);
 }
 
 .slide-item {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.title {
-  font-size: 5rem;
+.hero__title {
+  font-family: var(--font-display);
   font-weight: 900;
-  line-height: 1.1;
-  margin: 10px 0;
+  font-size: clamp(2.6rem, 6.6vw, 5.6rem);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
+  margin: 22px 0 24px;
 }
 
-.subtitle {
-  font-size: 2rem;
+.hero__title span {
+  display: block;
 }
 
-.highlight-text {
-  color: #ff5900;
-  /* Màu cam giống thiết kế */
+.hero__subtitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  max-width: 28ch;
 }
 
+/* Ô trạng thái: hình chữ nhật, xuống dòng gọn, không còn bị doodle đè */
 .hero-status-pill {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: 24px;
-  padding: 10px 18px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  border: 1.5px solid rgba(255, 89, 0, 0.25);
-  border-radius: 999px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #2b3031;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s ease;
-}
-
-.hero-status-pill:hover {
-  border-color: #ff5900;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 89, 0, 0.15);
+  max-width: 100%;
+  margin-top: 28px;
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 4px 4px 0 var(--blue);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--ink);
 }
 
 .status-indicator {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background-color: #10b981;
-  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  background-color: var(--green);
+  box-shadow: 0 0 0 0 rgba(60, 122, 78, 0.7);
   animation: pulse-dot 2s infinite;
   flex-shrink: 0;
 }
 
 @keyframes pulse-dot {
   0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    box-shadow: 0 0 0 0 rgba(60, 122, 78, 0.7);
   }
   70% {
-    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 8px rgba(60, 122, 78, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 0 rgba(60, 122, 78, 0);
   }
 }
 
-
-/* --- PHẦN IMAGE & LAYER --- */
-.image-content {
-  flex: 1;
-  position: relative;
-  /* QUAN TRỌNG: Thiết lập container này làm "gốc tọa độ" cho các ảnh nổi */
-  min-height: 400px;
+/* CODE / LEARN / CREATE / GROW + 3 sparkle, lấy từ góc dưới poster */
+.hero__motto {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  gap: 18px;
+  margin-top: clamp(36px, 5vw, 60px);
 }
 
-.main-image-placeholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  /* Layer nằm ngay trên background */
+.hero__motto-list {
+  list-style: none;
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  line-height: 1.9;
+  color: var(--ink);
 }
 
-/* CÁCH LÀM ẢNH NỔI LÊN TRÊN (LAYER PHÍA TRÊN) */
-.floating-image {
+.hero__motto-rule {
+  width: 44px;
+  height: 1px;
+  background: var(--ink);
+  margin-bottom: 9px;
+}
+
+.hero__sparkles {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+/* --- POSTER --- */
+.hero__poster {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Vòng tròn mảnh vắt qua poster, như các cung tròn trên poster gốc */
+.hero__poster::before {
+  content: '';
   position: absolute;
-  /* Tách ảnh ra khỏi luồng bố cục bình thường, nó sẽ "nổi" lên */
-  z-index: 2;
-  /* z-index lớn hơn main-image (1) nên nó sẽ nằm ĐÈ lên trên */
-  width: 120px;
-  object-fit: contain;
-}
-
-/* Đặt vị trí tự do cho từng ảnh nổi bằng top, bottom, left, right */
-.cat-top-left {
-  top: -60px;
-  left: 0;
-  transform: rotate(-15deg);
-  /* Hơi nghiêng cho tự nhiên */
-}
-
-.idea-top-right {
-  top: 20%;
-  left: 42%;
-  transform: rotate(10deg);
-}
-
-.cat-bottom {
-  bottom: 0px;
-  left: 30%;
+  z-index: -1;
+  left: -6%;
+  top: 46%;
+  width: 112%;
+  aspect-ratio: 1;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 /* --- ANIMATION CHO BÀN TAY --- */
@@ -204,4 +213,70 @@
 .hi-badge-slider.show-hand .motion-lines,
 .hi-badge-container:hover .motion-lines {
   animation: pulse-lines 0.75s ease-in-out infinite;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1000px) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 56px;
+  }
+
+  .hero__title {
+    font-size: clamp(2.6rem, 13vw, 5.4rem);
+  }
+
+  .hero__poster {
+    max-width: 640px;
+  }
+
+  .hero__poster::before {
+    left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 92px;
+  }
+
+  .hero__meta-mid {
+    display: none;
+  }
+
+  .greeting {
+    gap: 12px;
+  }
+
+  .hi-badge-container {
+    width: 46px;
+    height: 46px;
+  }
+
+  .hi-badge-slider {
+    height: 92px;
+  }
+
+  .hi-badge-slider.show-hand {
+    transform: translateY(-46px);
+  }
+
+  .slide-item {
+    width: 46px;
+    height: 46px;
+  }
+
+  .slide-item svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .hero-status-pill {
+    align-items: flex-start;
+  }
+
+  .status-indicator {
+    margin-top: 6px;
+  }
 }

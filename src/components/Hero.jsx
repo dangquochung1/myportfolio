@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import './Hero.css';
-import workImg from '../assets/work.png';
-import cat1 from '../assets/cat1.avif';
-import cat2 from '../assets/cat2.avif';
-import cat3 from '../assets/cat3.avif';
+import PosterReveal from './PosterReveal';
+import { Sparkle } from './Glyphs';
+import posterAbstract from '../assets/poster/abstract.webp';
+import posterPhoto from '../assets/poster/photo.webp';
+
+// Bốn chữ ở góc dưới poster
+const MOTTO = ['Code', 'Learn', 'Create', 'Grow'];
 
 const Hero = () => {
   const [showHand, setShowHand] = useState(false);
@@ -16,62 +19,91 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="hero-section">
-      <div className="hero-content">
-        {/* Phần chữ bên trái */}
-        <div className="text-content">
-          <p className="greeting">
-            <span className="hi-badge-container">
-              <span className={`hi-badge-slider ${showHand ? 'show-hand' : ''}`}>
-                <span className="slide-item text-hi">Hi</span>
-                <span className="slide-item icon-hand">
-                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="waving-hand-icon">
-                    {/* Motion lines fading in and out */}
-                    <g className="motion-lines">
-                      {/* Left lines */}
-                      <path d="M 8 18 Q 4 20.5 8 23" />
-                      <path d="M 5 16 Q 0 20.5 5 25" />
-                      {/* Right lines */}
-                      <path d="M 28 15 Q 32 17.5 28 20" />
-                      <path d="M 31 13 Q 36 17.5 31 22" />
-                    </g>
-                    {/* The waving hand */}
-                    <g className="hand-wave-group" style={{ transformOrigin: '18px 26px' }}>
-                      <g transform="translate(6, 6)">
-                        <path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v0"></path>
-                        <path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"></path>
-                        <path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"></path>
-                        <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path>
+    <section className="hero" id="top">
+      <div className="container">
+        {/* Dải thông tin trên cùng, như lề của một tấm poster */}
+        <div className="hero__meta">
+          <span className="label knockout">Dang Quoc Hung — Portfolio 2026</span>
+          <span className="label knockout hero__meta-mid">FPT University · Class of 2026</span>
+          <span className="label knockout">Hanoi, VN</span>
+        </div>
+
+        <div className="hero__grid">
+          {/* Phần chữ bên trái */}
+          <div className="hero__text">
+            <p className="greeting">
+              <span className="hi-badge-container">
+                <span className={`hi-badge-slider ${showHand ? 'show-hand' : ''}`}>
+                  <span className="slide-item text-hi">Hi</span>
+                  <span className="slide-item icon-hand" aria-hidden="true">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="waving-hand-icon">
+                      {/* Motion lines fading in and out */}
+                      <g className="motion-lines">
+                        {/* Left lines */}
+                        <path d="M 8 18 Q 4 20.5 8 23" />
+                        <path d="M 5 16 Q 0 20.5 5 25" />
+                        {/* Right lines */}
+                        <path d="M 28 15 Q 32 17.5 28 20" />
+                        <path d="M 31 13 Q 36 17.5 31 22" />
                       </g>
-                    </g>
-                  </svg>
+                      {/* The waving hand */}
+                      <g className="hand-wave-group" style={{ transformOrigin: '18px 26px' }}>
+                        <g transform="translate(6, 6)">
+                          <path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v0"></path>
+                          <path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"></path>
+                          <path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"></path>
+                          <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path>
+                        </g>
+                      </g>
+                    </svg>
+                  </span>
                 </span>
               </span>
-            </span>
-            there, I am <span className="highlight-text">Dang Quoc Hung</span>
-          </p>
-          <h1 className="title">SOFTWARE ENGINEER</h1>
-          <p className="subtitle">
-            who turns complex real-world logic into <span className="highlight-text">dependable software & AI !</span>
-          </p>
-          <div className="hero-status-pill">
-            <span className="status-indicator"></span>
-            <span>Open to opportunities: Backend • Full-stack • AI Integration • QA</span>
+              <span className="greeting__text">
+                there, I am <span className="highlight-text">Dang Quoc Hung</span>
+              </span>
+            </p>
+
+            <h1 className="hero__title">
+              <span>Software</span> <span>Engineer</span>
+            </h1>
+
+            <p className="hero__subtitle">
+              who turns complex real-world logic into <span className="highlight-text">dependable software & AI !</span>
+            </p>
+
+            <div className="hero-status-pill">
+              <span className="status-indicator" aria-hidden="true"></span>
+              <span>Open to opportunities: Backend • Full-stack • AI Integration • QA</span>
+            </div>
+
+            {/* Ký hiệu trang trí nằm trong ô lưới riêng → không bao giờ đè lên chữ */}
+            <div className="hero__motto">
+              <ul className="hero__motto-list label">
+                {MOTTO.map((word) => (
+                  <li key={word}>{word}</li>
+                ))}
+              </ul>
+              <span className="hero__motto-rule" aria-hidden="true" />
+              <span className="hero__sparkles" aria-hidden="true">
+                <Sparkle size={13} />
+                <Sparkle size={13} />
+                <Sparkle size={13} />
+              </span>
+            </div>
+          </div>
+
+          {/* Poster: mặc định là nửa hình học, bấm vào để lật ra ảnh thật */}
+          <div className="hero__poster">
+            <PosterReveal
+              abstractSrc={posterAbstract}
+              photoSrc={posterPhoto}
+              name="Dang Quoc Hung"
+              width={1086}
+              height={719}
+            />
           </div>
         </div>
-
-        {/* Phần ảnh bên phải */}
-        <div className="image-content">
-          {/* Ảnh chính (Cô gái đang vẽ) */}
-          <div className="main-image-placeholder">
-            <img src={workImg} alt="workImg" className="workImg" />
-          </div>
-        </div>
-
-        {/* Các ảnh vẽ tay doodle xung quanh (layer nổi phía trên) */}
-        <img src={cat1} alt="Mèo 1" className="floating-image cat-top-left" />
-        <img src={cat2} alt="Mèo 2" className="floating-image idea-top-right" />
-        <img src={cat3} alt="Mèo 3" className="floating-image cat-bottom" />
       </div>
     </section>
   );

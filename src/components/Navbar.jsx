@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import logoImg from '../assets/logo.png';
+import { Sparkle } from './Glyphs';
 import './Navbar.css';
+
+const LINKS = ['skills', 'work', 'roles', 'about', 'connect'];
 
 function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
@@ -8,7 +11,7 @@ function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Chỉ hiện menu khi ở đầu trang (cuộn chưa quá 50px)
       if (currentScrollY > 50) {
         setIsVisible(false);
@@ -22,17 +25,25 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className={`navbar ${isVisible ? '' : 'navbar-hidden'}`}>
-      <div className="navbar-logo">
-        <img src={logoImg} alt="hungface" className="navbar-avatar" />
+    <nav className={`navbar ${isVisible ? '' : 'navbar-hidden'}`} aria-label="Main">
+      <div className="navbar__inner">
+        <a href="#top" className="navbar-logo" aria-label="Dang Quoc Hung, back to top">
+          <img src={logoImg} alt="" className="navbar-avatar" />
+          <span className="navbar-mark label">
+            DQH <Sparkle size={9} />
+          </span>
+        </a>
+        <ul className="navbar-links">
+          {LINKS.map((id, i) => (
+            <li key={id}>
+              <a href={`#${id}`} className="menu-item">
+                <span className="menu-index">{String(i + 1).padStart(2, '0')}</span>
+                {id}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className="navbar-links">
-        <li><a href="#skills" className="menu-item">skills</a></li>
-        <li><a href="#work" className="menu-item">work</a></li>
-        <li><a href="#roles" className="menu-item">roles</a></li>
-        <li><a href="#about" className="menu-item">about</a></li>
-        <li><a href="#connect" className="menu-item">connect</a></li>
-      </ul>
     </nav>
   );
 }

@@ -1,94 +1,112 @@
 import { useState } from 'react';
 import './Skills.css';
-import midImg from '../assets/mid.png';
+import SectionHead from './SectionHead';
+import { CATEGORY_GLYPHS } from './glyphMap';
+import { PixelStairs } from './Glyphs';
 
 const CATEGORIES = [
-  { id: 'all', label: 'All Cards 🃏' },
-  { id: 'backend', label: 'Backend & Systems ⚙️' },
-  { id: 'ai', label: 'AI & Tools 🤖' },
-  { id: 'frontend', label: 'Frontend & Mobile 💻' },
-  { id: 'qa', label: 'QA, Testing & Ops 🧪' },
-  { id: 'languages', label: 'Languages 🌐' },
+  { id: 'all', label: 'All cards' },
+  { id: 'backend', label: 'Backend & Systems' },
+  { id: 'ai', label: 'AI & Tools' },
+  { id: 'frontend', label: 'Frontend & Mobile' },
+  { id: 'qa', label: 'QA, Testing & Ops' },
+  { id: 'languages', label: 'Languages' },
 ];
 
 const SKILLS = [
   // Backend & Systems
-  { name: "Java 17 & Spring Boot 3", cat: "backend", badge: "Core", top: "3%", left: "10%", rotate: "-6deg" },
-  { name: "Spring Security & JPA", cat: "backend", badge: "Auth & ORM", top: "18%", left: "3%", rotate: "3deg" },
-  { name: "PostgreSQL (79 Tables)", cat: "backend", badge: "Schema", top: "34%", left: "1%", rotate: "-4deg" },
-  { name: "Payroll & Business Logic", cat: "backend", badge: "Enterprise", top: "50%", left: "3%", rotate: "5deg" },
+  { name: "Java 17 & Spring Boot 3", cat: "backend", badge: "Core" },
+  { name: "Spring Security & JPA", cat: "backend", badge: "Auth & ORM" },
+  { name: "PostgreSQL (79 Tables)", cat: "backend", badge: "Schema" },
+  { name: "Payroll & Business Logic", cat: "backend", badge: "Enterprise" },
 
   // AI & Intelligent Tools
-  { name: "Gemini API & LLM Apps", cat: "ai", badge: "Top 50 Duyên", top: "1%", left: "50%", translateX: "-50%", rotate: "1deg" },
-  { name: "Python & FastAPI", cat: "ai", badge: "Microservices", top: "3%", right: "10%", rotate: "-3deg" },
-  { name: "InsightFace ONNX (~0.3s)", cat: "ai", badge: "Biometrics", top: "18%", right: "3%", rotate: "5deg" },
-  { name: "PaddleOCR & VietOCR", cat: "ai", badge: "Document AI", top: "34%", right: "1%", rotate: "-4deg" },
-  { name: "AI Coding Agents (Claude/AGY)", cat: "ai", badge: "Workflows", top: "50%", right: "3%", rotate: "3deg" },
-
-  // QA, Testing & Ops
-  { name: "Docker & Docker Compose", cat: "qa", badge: "DevOps", top: "67%", left: "6%", rotate: "-3deg" },
-  { name: "JUnit 5 & Mockito (440+ tests)", cat: "qa", badge: "Testing", top: "83%", left: "14%", rotate: "4deg" },
-  { name: "Postman & Jira Root-Cause", cat: "qa", badge: "QA / Defect", bottom: "1%", left: "33%", rotate: "-2deg" },
+  { name: "Gemini API & LLM Apps", cat: "ai", badge: "Top 50 Duyên" },
+  { name: "Python & FastAPI", cat: "ai", badge: "Microservices" },
+  { name: "InsightFace ONNX (~0.3s)", cat: "ai", badge: "Biometrics" },
+  { name: "PaddleOCR & VietOCR", cat: "ai", badge: "Document AI" },
+  { name: "AI Coding Agents (Claude/AGY)", cat: "ai", badge: "Workflows" },
 
   // Frontend & Mobile
-  { name: "React & Ant Design", cat: "frontend", badge: "Web UI", top: "67%", right: "6%", rotate: "4deg" },
-  { name: "React Native (Expo)", cat: "frontend", badge: "Mobile App", top: "83%", right: "14%", rotate: "-5deg" },
+  { name: "React & Ant Design", cat: "frontend", badge: "Web UI" },
+  { name: "React Native (Expo)", cat: "frontend", badge: "Mobile App" },
+
+  // QA, Testing & Ops
+  { name: "Docker & Docker Compose", cat: "qa", badge: "DevOps" },
+  { name: "JUnit 5 & Mockito (440+ tests)", cat: "qa", badge: "Testing" },
+  { name: "Postman & Jira Root-Cause", cat: "qa", badge: "QA / Defect" },
 
   // Languages & Global
-  { name: "IELTS 6.5 · TOPIK II Lv 3", cat: "languages", badge: "Multilingual", bottom: "1%", right: "33%", rotate: "3deg" },
+  { name: "IELTS 6.5 · TOPIK II Lv 3", cat: "languages", badge: "Multilingual" },
 ];
+
+const DECKS = CATEGORIES.filter((c) => c.id !== 'all');
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('all');
 
   return (
     <section className="skills-section" id="skills">
-      <div className="skills-wrapper">
-        
-        {/* Category Filter Tabs */}
-        <div className="skills-filter-container">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              className={`filter-btn ${activeCategory === cat.id ? 'active' : ''}`}
-              onClick={() => setActiveCategory(cat.id)}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+      <div className="deco-layer" aria-hidden="true">
+        <PixelStairs size={52} className="skills-deco-stairs" />
+      </div>
 
-        <div className="skills-container">
-          {/* Floating Pills */}
-          {SKILLS.map((skill, index) => {
-            const isMatch = activeCategory === 'all' || skill.cat === activeCategory;
+      <div className="container">
+        <SectionHead
+          index="01"
+          title="What I bring to the table"
+          meta={`${SKILLS.length} cards · ${DECKS.length} decks`}
+        >
+          Collecting skills like Pokémon cards so your project
+          doesn't need <span className="highlight-text">five different people</span>
+        </SectionHead>
+
+        {/* Category Filter Tabs */}
+        <div className="skills-filter-container" role="group" aria-label="Filter skills by category">
+          {CATEGORIES.map((cat) => {
+            const glyph = CATEGORY_GLYPHS[cat.id];
             return (
-              <div
-                key={index}
-                className={`skill-pill ${isMatch ? 'pill-active' : 'pill-dimmed'} cat-${skill.cat}`}
-                style={{
-                  top: skill.top,
-                  left: skill.left,
-                  right: skill.right,
-                  bottom: skill.bottom,
-                  transform: `translateX(${skill.translateX || '0'}) rotate(${skill.rotate})`
-                }}
+              <button
+                key={cat.id}
+                type="button"
+                className={`filter-btn ${activeCategory === cat.id ? 'active' : ''}`}
+                aria-pressed={activeCategory === cat.id}
+                onClick={() => setActiveCategory(cat.id)}
               >
-                <span className="skill-name">{skill.name}</span>
-                {skill.badge && <span className="skill-tag-badge">{skill.badge}</span>}
-              </div>
+                {glyph && <glyph.Glyph size={11} color="currentColor" />}
+                {cat.label}
+              </button>
             );
           })}
+        </div>
 
-          {/* Center Content */}
-          <div className="skills-center">
-            <img src={midImg} alt="Crying at laptop" className="skills-image" />
-            <h2 className="skills-title">WHAT I BRING TO THE TABLE</h2>
-            <p className="skills-subtitle">
-              Collecting skills like Pokémon cards so your project <br /> 
-              doesn't need <span className="highlight-text">five different people</span>
-            </p>
-          </div>
+        {/* Mỗi nhóm là một "bộ bài" — bấm tab thì bộ đó nổi lên, các bộ khác mờ đi */}
+        <div className="skills-decks">
+          {DECKS.map((deck, deckIdx) => {
+            const { Glyph, color } = CATEGORY_GLYPHS[deck.id];
+            const cards = SKILLS.filter((s) => s.cat === deck.id);
+            const state =
+              activeCategory === 'all' ? '' : activeCategory === deck.id ? 'is-active' : 'is-dimmed';
+            return (
+              <article key={deck.id} className={`skill-deck ${state}`} style={{ '--deck-color': color }}>
+                <header className="skill-deck__head">
+                  <Glyph size={30} color={color} />
+                  <span className="label skill-deck__count">
+                    {String(deckIdx + 1).padStart(2, '0')} / {String(DECKS.length).padStart(2, '0')}
+                  </span>
+                </header>
+                <h3 className="skill-deck__title">{deck.label}</h3>
+                <ul className="skill-deck__list">
+                  {cards.map((skill) => (
+                    <li key={skill.name} className="skill-row">
+                      <span className="skill-name">{skill.name}</span>
+                      <span className="skill-tag-badge">{skill.badge}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

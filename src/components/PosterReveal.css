@@ -1,0 +1,143 @@
+.poster {
+  position: relative;
+  margin: 0;
+}
+
+.poster__stage {
+  position: relative;
+}
+
+/* Dấu góc kiểu bản in (crop marks) nằm ngoài khung, ngoài cả bóng đổ */
+.poster__mark {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+
+.poster__mark--tl { top: -14px; left: -14px; border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.poster__mark--tr { top: -14px; right: -14px; border-top: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+.poster__mark--bl { bottom: -14px; left: -14px; border-bottom: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.poster__mark--br { bottom: -14px; right: -14px; border-bottom: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+
+.poster__frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper-2);
+  cursor: pointer;
+  box-shadow: 8px 8px 0 var(--ink);
+  transition: box-shadow 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+}
+
+.poster__frame:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0 var(--red);
+}
+
+.poster__frame:active {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0 var(--red);
+}
+
+.poster__base {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ảnh thật được cắt thành 6×4 ô, mỗi ô lật theo thứ tự đã seed */
+.poster__tiles {
+  position: absolute;
+  inset: 0;
+}
+
+.poster__tile {
+  position: absolute;
+  left: calc(var(--x) * 100% / var(--cols));
+  top: calc(var(--y) * 100% / var(--rows));
+  width: calc(100% / var(--cols));
+  height: calc(100% / var(--rows));
+  background-image: var(--photo);
+  background-size: calc(var(--cols) * 100%) calc(var(--rows) * 100%);
+  background-position:
+    calc(var(--x) * 100% / (var(--cols) - 1))
+    calc(var(--y) * 100% / (var(--rows) - 1));
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.5s var(--ease-out);
+  transition-delay: calc(var(--d) * 28ms);
+}
+
+.poster__frame.is-revealed .poster__tile {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: hover) {
+  .poster__frame:not(.is-revealed):hover .poster__tile.is-peek {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+}
+
+/* Lưới module hiện ra khi rê chuột / đã lật */
+.poster__grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(241, 232, 220, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(241, 232, 220, 0.45) 1px, transparent 1px);
+  background-size: calc(100% / var(--cols)) calc(100% / var(--rows));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.poster__frame:hover .poster__grid,
+.poster__frame:focus-visible .poster__grid,
+.poster__frame.is-revealed .poster__grid {
+  opacity: 1;
+}
+
+.poster__hint {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  font-size: 10px;
+}
+
+.poster__hint-icon {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1;
+  color: var(--red);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.poster__frame:hover .poster__hint-icon {
+  transform: rotate(180deg);
+}
+
+.poster .fig-caption {
+  margin-top: 22px;
+}
+
+.poster__state .is-on {
+  color: var(--red);
+  font-weight: 700;
+}

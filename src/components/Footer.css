@@ -1,221 +1,186 @@
 .footer-section {
-  padding: 80px 20px 40px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  padding: clamp(72px, 10vw, 128px) 0 40px;
 }
 
-.footer-card {
-  background-color: #fff;
-  width: 100%;
-  max-width: 900px;
-  border-radius: 4px;
-  padding: 50px 50px 0 50px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
+.footer-deco-checker {
+  right: max(16px, calc((100% - var(--page-max)) / 2));
+  top: 18px;
+  color: var(--ink);
+}
+
+/* Không đặt z-index ở đây: z-index tạo stacking context riêng,
+   khiến mix-blend-mode của hình vẽ không hoà được vào giấy phía sau.
+   Vẫn nằm trên .deco-layer nhờ thứ tự DOM. */
+.footer-inner {
   position: relative;
 }
 
 .footer-top-section {
-  display: flex;
-  gap: 40px;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: end;
+  margin-bottom: clamp(48px, 7vw, 80px);
 }
 
+/* Danh sách liên hệ: mỗi dòng một kênh, ngăn bằng hairline */
+.footer-links {
+  list-style: none;
+  border-top: 1px solid var(--ink);
+}
+
+.social-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.6em minmax(7em, 0.6fr) minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--ink);
+  text-decoration: none;
+  color: var(--ink);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Nền màu son trượt lên khi hover */
+.social-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--red);
+  transform: translateY(101%);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.social-index {
+  color: var(--red);
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.social-label {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.social-handle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.social-arrow {
+  font-size: 1.3rem;
+  line-height: 1;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.social-row:hover::before,
+.social-row:focus-visible::before {
+  transform: translateY(0);
+}
+
+.social-row:hover,
+.social-row:focus-visible {
+  color: var(--paper);
+}
+
+.social-row:hover .social-index,
+.social-row:hover .social-handle,
+.social-row:focus-visible .social-index,
+.social-row:focus-visible .social-handle {
+  color: var(--paper);
+}
+
+.social-row:hover .social-arrow {
+  transform: translate(4px, -4px);
+}
+
+.social-row:active::before {
+  background: var(--ink);
+}
+
+/* Chữ ký: ảnh nền trong suốt, nằm trên giấy kem */
 .footer-stamp {
-  width: 130px;
-  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .footer-stamp img {
   width: 100%;
+  max-width: 240px;
   height: auto;
-  object-fit: contain;
-}
-
-.footer-right-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 30px;
-}
-
-.footer-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-title {
-  font-family: 'Oswald', 'Bebas Neue', sans-serif;
-  font-size: 3.5rem;
-  font-weight: 600;
-  color: #000;
-  text-transform: uppercase;
-  margin: 0;
-  line-height: 1;
-}
-
-.home-btn {
-  background-color: #ff5900;
-  color: #fff;
-  font-family: 'Oswald', 'Bebas Neue', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 500;
-  padding: 8px 28px;
-  border: 2px solid #000;
-  border-radius: 6px;
-  cursor: pointer;
-  box-shadow: 4px 4px 0px #000;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  outline: none;
-}
-
-.home-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 6px 6px 0px #000;
-}
-
-.home-btn:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0px 0px 0px transparent;
-}
-
-.footer-links {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.social-btn {
-  flex: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 10px;
-  border: 2px solid #000;
-  background-color: #fff;
-  border-radius: 8px;
-  text-decoration: none;
-  overflow: hidden;
-  box-shadow: 4px 4px 0px #ff5900;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  z-index: 1;
-}
-
-.social-bg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #ff5900;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-  z-index: -1;
-}
-
-.social-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-}
-
-.text-label {
-  color: #000;
-  font-family: 'Oswald', 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 1;
-  transition: color 0.3s ease;
-  text-transform: uppercase;
-}
-
-.arrow-wrapper {
-  overflow: hidden;
-  transition: width 0.3s ease, opacity 0.3s ease;
-  width: 18px;
-  opacity: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.arrow-wrapper span {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.2rem;
-  color: #000;
-  font-weight: bold;
-  line-height: 1;
-}
-
-/* Hover State */
-.social-btn:hover .arrow-wrapper {
-  width: 0;
-  opacity: 0;
-}
-.social-btn:hover .text-label {
-  color: #ff5900;
-}
-
-/* Active State */
-.social-btn:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0px 0px 0px transparent;
-}
-.social-btn:active .social-bg {
-  transform: translateY(0%);
-}
-.social-btn:active .text-label {
-  color: #000;
-}
-.social-btn:active .arrow-wrapper span {
-  color: #000;
 }
 
 .footer-illustration {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 10px;
+  margin: 0 auto;
+  max-width: 900px;
 }
 
 .footer-illustration img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  object-fit: contain;
-  display: block;
+  /* nền trắng của hình vẽ tan vào giấy kem */
+  mix-blend-mode: multiply;
+}
+
+.footer-sparkle {
+  color: var(--red);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: clamp(40px, 6vw, 64px);
+  padding-top: 18px;
+  border-top: 1px solid var(--rule-strong);
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .footer-card {
-    padding: 30px 30px 0 30px;
-  }
+@media (max-width: 860px) {
   .footer-top-section {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    text-align: center;
+    grid-template-columns: minmax(0, 1fr);
   }
-  .footer-stamp {
-    width: 100px;
+
+  .footer-stamp img {
+    max-width: 180px;
   }
-  .footer-header {
-    flex-direction: column;
-    gap: 20px;
+}
+
+@media (max-width: 560px) {
+  .social-row {
+    grid-template-columns: 2.2em minmax(0, 1fr) auto;
+    row-gap: 2px;
   }
-  .footer-links {
-    flex-direction: column;
-    width: 100%;
+
+  .social-handle {
+    grid-column: 2 / 3;
+    grid-row: 2;
   }
-  .footer-title {
-    font-size: 2.8rem;
+
+  .social-arrow {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .footer-deco-checker {
+    display: none;
   }
 }

@@ -1,27 +1,22 @@
 .about-wrapper {
-  padding: 0 2%;
-  margin-top: 60px;
-  margin-bottom: 60px;
   position: relative;
-  z-index: 2; /* To sit above the interactive background */
+  z-index: 2; /* Nằm trên nền tương tác */
+  padding: clamp(40px, 6vw, 72px) var(--gutter);
 }
 
+/* Khối mực tối duy nhất của trang — tạo nhịp như khối đen trên poster */
 .about-section {
   position: relative;
-  background-color: #2b3031; /* Dark background */
-  color: #fff;
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  padding: 80px 20px 100px 20px;
+  max-width: calc(var(--page-max) + 96px);
+  margin: 0 auto;
+  padding: clamp(48px, 7vw, 88px) clamp(20px, 5vw, 64px) clamp(64px, 8vw, 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  max-width: 1400px;
-  margin: 0 auto;
+  color: var(--paper);
+  background-color: var(--ink);
+  border-radius: var(--radius);
 }
 
 /* 3D Perspective Grid */
@@ -30,10 +25,10 @@
   bottom: 0;
   left: -20%;
   width: 140%;
-  height: 70%;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  height: 62%;
+  background-image:
+    linear-gradient(rgba(241, 232, 220, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 232, 220, 0.09) 1px, transparent 1px);
   background-size: 60px 60px;
   transform: perspective(600px) rotateX(70deg) translateY(50px);
   transform-origin: top center;
@@ -43,69 +38,118 @@
   mask-image: linear-gradient(to bottom, transparent 0%, black 80%);
 }
 
+.about-deco-half {
+  right: -40px;
+  top: -70px;
+}
+
+.about-deco-block {
+  left: -30px;
+  bottom: 30%;
+}
+
 .about-content {
   position: relative;
   z-index: 1;
-  text-align: center;
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  max-width: var(--page-max);
 }
 
-.about-title {
-  font-family: 'Oswald', 'Bebas Neue', sans-serif;
-  font-size: 4rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
-  text-transform: uppercase;
+/* Header trên nền tối */
+.section-head--dark .label {
+  color: rgba(241, 232, 220, 0.66);
+}
+
+.section-head--dark .section-head__index {
+  color: var(--orange);
+}
+
+/* Trên khối tối không có lưới dấu + phía sau -> bỏ ô giấy */
+.section-head--dark .knockout {
+  background: transparent;
+  box-shadow: none;
+}
+
+.section-head--dark .section-head__rule {
+  background: rgba(241, 232, 220, 0.3);
+}
+
+.section-head--dark .section-title {
+  color: var(--paper);
+}
+
+/* Văn bản trái | timeline phải */
+.about-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+  margin-bottom: clamp(72px, 9vw, 110px);
 }
 
 .about-desc {
-  font-family: 'Patrick Hand SC', cursive;
-  font-size: 1.4rem;
-  line-height: 1.6;
-  color: #e4e7e8;
-  margin-bottom: 50px;
-  padding: 0 20px;
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: rgba(241, 232, 220, 0.86);
 }
 
 .about-desc p {
   margin-bottom: 20px;
 }
 
+.about-desc p:first-child {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.9vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+
 .about-desc p:last-child {
   margin-bottom: 0;
 }
 
-/* Resume Button */
-.resume-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background-color: #ff5900;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
+/* Timeline kiểu bảng Swiss */
+.about-index__title {
+  color: rgba(241, 232, 220, 0.72);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(241, 232, 220, 0.5);
+}
+
+.timeline {
+  list-style: none;
+}
+
+.timeline__row {
+  display: grid;
+  grid-template-columns: 9.2em minmax(0, 1fr);
+  gap: 2px 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(241, 232, 220, 0.16);
+}
+
+.timeline__when {
+  grid-row: span 2;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  line-height: 1.9;
+  color: var(--orange);
+  white-space: nowrap;
+}
+
+.timeline__what {
   font-weight: 600;
-  font-size: 1rem;
-  padding: 12px 28px;
-  border-radius: 30px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 89, 0, 0.2);
-  margin-bottom: 80px;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--paper);
 }
 
-.resume-btn:hover {
-  background-color: #e65000;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 89, 0, 0.3);
-}
-
-.download-icon {
-  width: 18px;
-  height: 18px;
+.timeline__note {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: rgba(241, 232, 220, 0.62);
 }
 
 /* Images Row */
@@ -128,42 +172,45 @@
   width: 220px;
   height: 280px;
   object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(241, 232, 220, 0.6);
+  border-radius: var(--radius);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.35);
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  background-color: #e4e7e8;
+  background-color: var(--paper-2);
 }
 
-/* Tooltip Styles */
+/* Tooltip: nhãn mono như chú thích trên poster */
 .tooltip {
   position: absolute;
-  top: -45px;
+  top: -44px;
   left: 50%;
-  transform: translateX(-50%) scale(0.8);
-  background-color: #555b5e;
-  color: #fff;
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-family: 'Inter', sans-serif;
+  transform: translateX(-50%) scale(0.85);
+  padding: 7px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   font-weight: 500;
-  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   white-space: nowrap;
+  color: var(--ink);
+  background-color: var(--paper);
+  border: 1px solid var(--paper);
+  border-radius: var(--radius);
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   z-index: 20;
 }
 
 .tooltip::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: -6px;
   left: 50%;
   transform: translateX(-50%);
   border-width: 6px 6px 0;
   border-style: solid;
-  border-color: #555b5e transparent transparent transparent;
+  border-color: var(--paper) transparent transparent transparent;
 }
 
 .image-wrapper:hover .tooltip {
@@ -178,7 +225,7 @@
 
 .image-wrapper:hover .about-img {
   transform: scale(1.1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 10px 10px 0 var(--orange);
 }
 
 /* Sibling combinators for rotating adjacent cards */
@@ -211,15 +258,13 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .about-title {
-    font-size: 3rem;
+@media (max-width: 900px) {
+  .about-columns {
+    grid-template-columns: minmax(0, 1fr);
   }
-  
-  .about-desc {
-    font-size: 1.2rem;
-  }
+}
 
+@media (max-width: 768px) {
   .about-images {
     flex-direction: column;
     gap: 30px;
@@ -229,7 +274,7 @@
     width: 260px;
     height: 320px;
   }
-  
+
   /* Disable hover transform logic on mobile to avoid overlapping issues */
   .about-images:has(.img-left:hover) .img-center,
   .about-images:has(.img-left:hover) .img-right,
@@ -238,5 +283,16 @@
   .about-images:has(.img-right:hover) .img-center,
   .about-images:has(.img-right:hover) .img-left {
     transform: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .timeline__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .timeline__when {
+    grid-row: auto;
+    line-height: 1.5;
   }
 }

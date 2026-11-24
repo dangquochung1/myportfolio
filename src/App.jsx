@@ -13,11 +13,13 @@ function App() {
     <div className="app-container">
       <InteractiveBackground />
       <Navbar />
-      <Hero />
-      <Skills />
-      <Work />
-      <Roles />
-      <About />
+      <main>
+        <Hero />
+        <Skills />
+        <Work />
+        <Roles />
+        <About />
+      </main>
       <Footer />
     </div>
   )
