@@ -65,7 +65,7 @@ const Footer = () => {
 
           <div className="footer-stamp">
             <img src={signatureImg} alt="Signature of Dang Quoc Hung" width="560" height="377" />
-            <span className="label">— Hùng</span>
+            <span className="label">— Hưng</span>
           </div>
         </div>
 
